@@ -44,6 +44,36 @@ export default function App({ Component, pageProps }) {
 import './widget-demos/styles/tokens.css';
 ```
 
+**Font:** the widgets inherit their typeface from the page and are
+designed in **Inter** (weights 400, 500, 600). If your app doesn't already
+use Inter, load it at the root, e.g. with `next/font/google`:
+
+```tsx
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
+// <html lang="en" className={inter.className}>
+```
+
+## 2b. Copy the static images
+
+The demos load images by absolute URL (`/shopify/mens.png`,
+`/order-lookup/map.webp`, `/replacement-order/hoodie.png`, ...). Copy the
+folders inside `widget-demos/public/` into your app's public root so
+those URLs resolve:
+
+```
+widget-demos/public/shopify/            →  public/shopify/
+widget-demos/public/order-lookup/       →  public/order-lookup/
+widget-demos/public/replacement-order/  →  public/replacement-order/
+```
+
+`OrderLookupDemo` and `ReplacementOrderDemo` use `next/image`. On Next.js nothing else is needed. On Vite
+or another non-Next stack, replace the `<Image ... />` in
+`demos/order-lookup/OrderStatusCard.tsx` and
+`demos/replacement-order/ReplacementCards.tsx` with a plain `<img>` that
+keeps the same `src`, `alt`, `width` and `height`.
+
 ## 3. Set up the `@/...` path alias (recommended)
 
 The demos and components use `@/...` imports internally
@@ -100,21 +130,21 @@ recommend this — the alias is two lines of config.
 ## 4. Render any demo
 
 ```tsx
-import { StripeDemo } from '@/widget-demos';
+import { OrderLookupDemo } from '@/widget-demos';
 
-export default function BillingPreview() {
-  return <StripeDemo />;
+export default function OrderPreview() {
+  return <OrderLookupDemo />;
 }
 ```
 
-The widget renders at `284 × 512 px` and runs on its own clock — no
+The widget renders at `406 × 732 px` and runs on its own clock — no
 props or state wiring needed. The animation loops indefinitely.
 
 ## 5. (Optional) Embed at a custom size
 
 ```tsx
 <div style={{ transform: 'scale(1.4)', transformOrigin: 'top left' }}>
-  <StripeDemo />
+  <OrderLookupDemo />
 </div>
 ```
 
@@ -158,6 +188,13 @@ Check that `useTimeline` is being called — it's called inside each
 demo's `page.tsx` and shouldn't need any wiring on your side. If you
 copied only some demos, make sure you also copied `hooks/`, `lib/`,
 and `components/`.
+
+**Product, map or overlay images are missing**
+The `public/` folders weren't copied to your app's public root. See
+step 2b.
+
+**`Cannot find module 'next/image'`**
+You're on a non-Next stack. See step 2b for the `<img>` swap.
 
 **Widget is too big / too small for my container**
 Wrap it in a `<div style={{ transform: 'scale(X)' }}>` — see step 5.

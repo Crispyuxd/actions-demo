@@ -11,7 +11,7 @@
 
 set -euo pipefail
 
-VERSION="1.1.0"
+VERSION="1.2.0"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/widget-demos-handover"
 ZIP="$ROOT/widget-demos-v${VERSION}.zip"
@@ -30,10 +30,18 @@ cp "$ROOT/src/app/globals.css" "$OUT/styles/tokens.css"
 # on the missing module. Bundled as a folder mirroring the src layout.
 cp -r "$ROOT/src/icons/." "$OUT/icons/"
 
-for d in escalation calendar shopify slack tavily custom-actions stripe leads forms button suggested-messages; do
-  if [ -d "$ROOT/src/app/demos/$d" ]; then
-    cp -r "$ROOT/src/app/demos/$d" "$OUT/demos/"
-  fi
+# This drop ships only the four commerce demos. shopify-widget also holds
+# the WidgetChrome/WidgetIcons the three order demos import.
+for d in shopify-widget order-lookup order-cancellation replacement-order; do
+  cp -r "$ROOT/src/app/demos/$d" "$OUT/demos/"
+done
+
+# Demos load images by absolute URL (`/shopify/...`, `/order-lookup/...`,
+# `/replacement-order/...`), so these files must sit at the consumer's
+# public root. Shipped under public/ for a straight copy.
+mkdir -p "$OUT/public"
+for a in shopify order-lookup replacement-order; do
+  cp -r "$ROOT/public/$a" "$OUT/public/"
 done
 
 echo "▶ Writing package.json + README + INTEGRATION.md + index.ts..."
@@ -47,10 +55,18 @@ cp "$ROOT/scripts/handover-templates/INTEGRATION.md"  "$OUT/INTEGRATION.md"
 
 echo "▶ Zipping..."
 cd "$ROOT"
-if command -v powershell >/dev/null 2>&1; then
-  powershell -NoProfile -Command "Compress-Archive -Path '$OUT/*' -DestinationPath '$ZIP' -Force"
-else
+if command -v zip >/dev/null 2>&1; then
   cd "$OUT" && zip -rq "$ZIP" . && cd "$ROOT"
+else
+  # Windows: bsdtar ships with Windows 10+ and writes forward-slash entry
+  # names. PowerShell 5.1's Compress-Archive writes backslashes, which
+  # extract as flat "demos\x\page.tsx" files on macOS/Linux.
+  # Called by full path: Git Bash's own `tar` is GNU tar, which can't
+  # write zips. Relative paths sidestep its "C:" remote-host parsing.
+  # Entries are listed by name, not ".": a "./" prefix on every entry makes
+  # Windows Explorer reject the whole zip as invalid.
+  BSDTAR="$(cygpath -u "${SYSTEMROOT:-C:\\Windows}")/System32/tar.exe"
+  ( cd "$OUT" && "$BSDTAR" -a -c -f "../$(basename "$ZIP")" * )
 fi
 
 SIZE=$(du -h "$ZIP" | cut -f1)
