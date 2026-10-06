@@ -1,8 +1,8 @@
 # widget-demos
 
 Animated chat-widget demos as drop-in React components. Each demo is a
-short, looping animation showing a specific agent flow (Stripe billing,
-Shopify cart, calendar booking, lead capture, etc.).
+short, looping animation showing a commerce agent flow: a storefront
+order, an order lookup, a cancellation and a replacement order.
 
 ## What's in the box
 
@@ -13,43 +13,42 @@ widget-demos/
 ├── styles/
 │   └── tokens.css            Design tokens (colors, easings, shadows).
 │                             MUST be imported once at your app root.
-├── components/               All 32 widget primitives (ChatCard,
+├── components/               Shared widget primitives (ChatCard,
 │                             ChatHeader, MessagesStack, etc.)
 ├── hooks/
 │   └── useTimeline.ts        Drives the per-demo timeline engine
 ├── lib/                      Timeline engine internals
-└── demos/                    11 ready-to-render demo components
-    ├── stripe/
-    ├── leads/
-    ├── shopify/
-    ├── slack/
-    ├── tavily/
-    ├── escalation/
-    ├── calendar/
-    ├── custom-actions/
-    ├── forms/
-    ├── button/
-    └── suggested-messages/
+├── icons/                    Inline-SVG icons used by the components
+├── public/                   Static images the demos load by URL.
+│                             Copy into your app's public root.
+└── demos/                    4 ready-to-render demo components
+    ├── shopify-widget/       Also holds the shared widget chrome the
+    │                         three order demos import. Keep it.
+    ├── order-lookup/
+    ├── order-cancellation/
+    └── replacement-order/
 ```
 
 ## Quick start
 
 1. Copy the entire `widget-demos/` folder into your project (e.g. into
    `src/widget-demos/`).
-2. Import the token CSS once in your app entry (e.g. `app/layout.tsx`,
+2. Copy the folders inside `widget-demos/public/` into your app's public
+   root (see `INTEGRATION.md`, step 2b).
+3. Import the token CSS once in your app entry (e.g. `app/layout.tsx`,
    `_app.tsx`, or wherever you import global styles):
 
    ```tsx
    import 'src/widget-demos/styles/tokens.css';
    ```
 
-3. Render any demo:
+4. Render any demo:
 
    ```tsx
-   import { StripeDemo } from 'src/widget-demos';
+   import { OrderLookupDemo } from 'src/widget-demos';
 
    export default function MyPage() {
-     return <StripeDemo />;
+     return <OrderLookupDemo />;
    }
    ```
 
@@ -59,17 +58,10 @@ That's it. Every demo runs autonomously — no props, no state wiring needed.
 
 | Component               | What it shows                                           |
 |-------------------------|---------------------------------------------------------|
-| `StripeDemo`            | Subscription management & billing flow                  |
-| `LeadsDemo`             | Lead capture form with inline validation                |
-| `ShopifyDemo`           | Product browsing, cart, checkout                        |
-| `SlackDemo`             | Multi-line bot reply with meta row                      |
-| `TavilyDemo`            | Web search → answer with citations                      |
-| `EscalationDemo`        | Hand-off from agent to human support                    |
-| `CalendarDemo`          | Time-slot picker → call-booked confirmation             |
-| `CustomActionsDemo`     | Custom action invocation pattern                        |
-| `FormsDemo`             | Multi-field form → success morph                        |
-| `ButtonDemo`            | CTA button with click animation                         |
-| `SuggestedMessagesDemo` | Suggestion chips → user selection                       |
+| `ShopifyWidgetDemo`     | Sale categories → product pick → order placed           |
+| `OrderLookupDemo`       | Order status lookup with shipment map                   |
+| `OrderCancellationDemo` | Cancel an order → cancellation confirmed                |
+| `ReplacementOrderDemo`  | Pick items and sizes → replacement order placed         |
 
 ## Requirements
 
@@ -78,33 +70,29 @@ That's it. Every demo runs autonomously — no props, no state wiring needed.
 - Native CSS animations + `linear()` easing — works in all evergreen
   browsers. No Framer Motion / GSAP runtime needed.
 - TypeScript ≥ 5 if you import from `.ts` directly (most consumers will).
+- **Next.js** ≥ 13 for `OrderLookupDemo` and `ReplacementOrderDemo`.
+  They render their images with `next/image`. On a non-Next stack, swap
+  those two `<Image>` tags for `<img>` (see `INTEGRATION.md`).
+- **Inter** (400, 500, 600) on the page. The widgets inherit their font.
 
 ## Integration details
 
 See `INTEGRATION.md` for:
 - Path-alias setup (Next.js, Vite, Webpack)
+- Static images (`public/`) and font
 - Embedding demos at custom sizes
-- Disabling autoplay
 - Debug scrubber (`?debug` URL param)
-- Updating to a newer drop
 
 ## Sizing & scale
 
-Every demo renders inside a `ChatCard` that is hard-coded at `0.7×`
-scale, so the visible widget is **284 × 512 px** in any consumer
-environment. If you need a different size, wrap the demo in a `<div>`
-with a CSS `transform: scale(...)`.
+Every demo renders inside a `ChatCard` at full size, **406 × 732 px**.
+If you need a different size, wrap the demo in a `<div>` with a CSS
+`transform: scale(...)`.
 
 ## Updates
 
-This bundle is delivered as a zip on release. When we ship a new drop:
-
-1. We will send you a fresh `widget-demos-vX.Y.zip`.
-2. Replace your existing `widget-demos/` folder with the new contents.
-3. No import lines should change — all public APIs stay stable.
-
-Versions follow semver (`MAJOR.MINOR.PATCH`). Breaking changes only
-happen on `MAJOR` bumps and will be called out in a `CHANGELOG.md`.
+This bundle is delivered as a zip on release. Versions follow semver
+(`MAJOR.MINOR.PATCH`).
 
 ## Support
 
