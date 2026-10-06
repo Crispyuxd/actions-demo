@@ -1,0 +1,25 @@
+.flow { display: flex; width: 366px; flex-direction: column; align-items: stretch; gap: 32px; }
+.stageArea { position: relative; height: 420px; }
+.stage { position: absolute; top: 0; left: 0; width: 366px; }
+.hiddenStage { opacity: 0; pointer-events: none; }
+.cardSlot { margin-top: 12px; }
+
+.manual :global(#replacement-scroll),
+.manual :global(#replacement-user),
+.manual :global([id^="replacement-bot-"]),
+.manual :global([id^="replacement-meta-"]),
+.manual :global([id$="-card"]),
+.manual :global([id^="replacement-stage-"]) {
+  animation: none !important;
+  transform: none !important;
+}
+.manual :global(#replacement-user),
+.manual :global([id^="replacement-meta-"]),
+.manual :global([id$="-card"]) { opacity: 1 !important; }
+.manual :global([id^="replacement-bot-"]) { clip-path: none !important; }
+.manual :global([id^="replacement-stage-"]) { opacity: 0 !important; pointer-events: none; }
+.manual[data-manual-stage='select'] :global(#replacement-stage-select),
+.manual[data-manual-stage='options'] :global(#replacement-stage-options),
+.manual[data-manual-stage='confirm'] :global(#replacement-stage-confirm),
+.manual[data-manual-stage='success'] :global(#replacement-stage-success) { opacity: 1 !important; pointer-events: auto; }
+.manual :global(#replacement-cursor) { display: none !important; }

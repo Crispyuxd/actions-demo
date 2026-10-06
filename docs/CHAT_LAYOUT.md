@@ -12,10 +12,12 @@
 |---|---|---|
 | **inset** | 20px | Every edge of the messages area (top/left/right/bottom). Built in via `MessagesStack.module.css` `padding: 20px`. |
 | **between events** | 32px | Between adjacent chat events (a bot turn, a user turn, a divider, etc.). Enforced by the inner stack's `gap` and per-element margins. |
-| **internal to a turn** | 20px | Within a single chat event when it has a primary widget (e.g., bot text → its response card). Composed by adding a negative marginTop on the widget wrapper to trim the inter-event 32 down to 20. |
+| **internal to a turn** | 20px; 12px for the widget demos below | Within a single chat event when it has a primary widget (e.g., bot text → its response card). The Shopify widget, order cancellation, replacement order, and order lookup demos use a 12px text-to-card gap by design request. |
 
-Anything that doesn't fit one of these three values is a bug. Don't
-invent new spacings.
+The 12px exception applies only to `/demos/shopify-widget`,
+`/demos/order-cancellation`, `/demos/replacement-order`, and
+`/demos/order-lookup`. Elsewhere,
+anything outside the three base spacings is a bug. Don't invent new spacings.
 
 ## Chat-card geometry
 

@@ -28,6 +28,10 @@ import { timeline as slack } from '../src/app/demos/slack/timeline';
 import { timeline as suggestedMessages } from '../src/app/demos/suggested-messages/timeline';
 import { timeline as tavily } from '../src/app/demos/tavily/timeline';
 import { timeline as shopify } from '../src/app/demos/shopify/timeline';
+import { timeline as shopifyWidget } from '../src/app/demos/shopify-widget/timeline';
+import { timeline as orderCancellation } from '../src/app/demos/order-cancellation/timeline';
+import { timeline as replacementOrder } from '../src/app/demos/replacement-order/timeline';
+import { timeline as orderLookup } from '../src/app/demos/order-lookup/timeline';
 import { timeline as leads } from '../src/app/demos/leads/timeline';
 import { timeline as stripe } from '../src/app/demos/stripe/timeline';
 import { timeline as transferToHuman } from '../src/app/demos/transfer-to-human/timeline';
@@ -43,6 +47,10 @@ const DEMOS: Array<{ name: string; cfg: TimelineConfig }> = [
   { name: 'suggested-messages', cfg: suggestedMessages },
   { name: 'tavily', cfg: tavily },
   { name: 'shopify', cfg: shopify },
+  { name: 'shopify-widget', cfg: shopifyWidget },
+  { name: 'order-cancellation', cfg: orderCancellation },
+  { name: 'replacement-order', cfg: replacementOrder },
+  { name: 'order-lookup', cfg: orderLookup },
   { name: 'leads', cfg: leads },
   { name: 'stripe', cfg: stripe },
   { name: 'transfer-to-human', cfg: transferToHuman },

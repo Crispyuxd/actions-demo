@@ -1,0 +1,71 @@
+.card {
+  display: flex;
+  width: 334px;
+  flex-direction: column;
+  padding: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  background: #fff;
+  color: #09090b;
+  opacity: 0;
+}
+.title, .titleRow h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+}
+.titleRow { display: flex; align-items: center; gap: 12px; min-height: 24px; }
+.titleRow img { flex: none; }
+.separator { width: 100%; height: 1px; flex: none; margin: 20px 0; background: #f4f4f5; }
+.items { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.itemChoice { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.productRow { display: flex; min-width: 0; align-items: center; gap: 12px; }
+.productImage { display: flex; width: 44px; height: 44px; flex: none; overflow: hidden; border: 1px solid #f4f4f5; border-radius: 4px; background: #f3f3f3; }
+.productImage img { width: 44px; height: 44px; object-fit: cover; }
+.productText { display: flex; min-width: 0; flex-direction: column; gap: 4px; }
+.productName { color: #27272a; font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: -0.28px; white-space: nowrap; }
+.productDetail { color: #52525b; font-size: 14px; line-height: 20px; letter-spacing: -0.28px; white-space: nowrap; }
+.choiceInput { appearance: none; width: 20px; height: 20px; flex: none; margin: 0; border: 1px solid #d4d4d8; border-radius: 50%; background: #fff; cursor: pointer; }
+.choiceInput:checked { border: 0; background: url('/replacement-order/radio-selected.svg') center no-repeat; }
+.choiceInput:focus-visible { outline: 2px solid #09090b; outline-offset: 3px; }
+.itemChoice { cursor: pointer; }
+.primaryButton, .secondaryButton {
+  display: flex;
+  min-height: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+}
+.primaryButton { border: 1px solid #09090b; background: #09090b; color: #fff; box-shadow: inset 0 -2px 0 rgba(255,255,255,0.12); }
+.secondaryButton { border: 1px solid #e4e4e7; background: #fff; color: #09090b; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.04); }
+.primaryButton:focus-visible, .secondaryButton:focus-visible, .selectField:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
+@media (hover: hover) { .primaryButton:hover { background: #27272a; } .secondaryButton:hover { background: #fafafa; } }
+.fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+.field { display: flex; min-height: 40px; align-items: center; justify-content: space-between; gap: 16px; color: #52525b; font-size: 14px; font-weight: 500; letter-spacing: -0.28px; }
+.selectField, .sizeSelect { display: flex; width: 139px; height: 40px; align-items: center; justify-content: space-between; padding: 0 12px; border: 1px solid #e4e4e7; border-radius: 8px; background: #fff; color: #09090b; font: inherit; font-size: 14px; }
+.selectField img { flex: none; }
+.sizeSelect { appearance: none; background: #fff url('/replacement-order/select-chevron.svg') no-repeat right 16px center; cursor: pointer; }
+.sizeSelect:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
+.backButton { display: flex; width: 24px; height: 24px; flex: none; align-items: center; justify-content: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.backButton:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
+.swapBlock { display: flex; flex-direction: column; gap: 4px; margin-top: 20px; padding: 12px 16px; border-radius: 8px; background: #fafafa; font-size: 14px; line-height: 20px; letter-spacing: -0.28px; }
+.swapBlock strong { font-weight: 500; }
+.swapLabel { color: #71717a; }
+.transferDivider { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.transferLine { height: 1px; flex: 1; background: #f4f4f5; }
+.confirmButtons { display: flex; gap: 12px; margin-top: 20px; }
+.confirmButtons > button { flex: 1; }
+.successIcon { display: flex; width: 20px; height: 20px; flex: none; align-items: center; justify-content: center; }
+.details { display: flex; flex-direction: column; gap: 12px; margin: 0 0 20px; font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: -0.28px; }
+.details > div { display: flex; justify-content: space-between; gap: 8px; }
+.details dt { color: #52525b; }
+.details dd { margin: 0; text-align: right; }

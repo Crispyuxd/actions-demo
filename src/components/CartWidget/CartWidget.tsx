@@ -31,7 +31,7 @@ export function CartWidget({
   return (
     <div id={id} className={styles.widget}>
       <div className={styles.top}>
-        <p className={styles.heading}>{items.length} items in cart</p>
+        <p className={styles.heading}>{items.length} {items.length === 1 ? 'item' : 'items'} in cart</p>
         <div className={styles.divider} />
         <div className={styles.lines}>
           {items.map((item, i) => (

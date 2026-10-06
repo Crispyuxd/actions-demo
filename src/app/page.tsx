@@ -44,6 +44,20 @@ export default function Home() {
         Collect data
       </Link>
 
+      <h2 style={{ fontSize: 18, fontWeight: 600, marginTop: 16 }}>Commerce demos</h2>
+      <Link href="/demos/order-lookup" style={{ fontSize: 16, color: '#09090b', textDecoration: 'underline' }}>
+        1. Order Lookup
+      </Link>
+      <Link href="/demos/order-cancellation" style={{ fontSize: 16, color: '#09090b', textDecoration: 'underline' }}>
+        2. Order Cancellation
+      </Link>
+      <Link href="/demos/replacement-order" style={{ fontSize: 16, color: '#09090b', textDecoration: 'underline' }}>
+        3. Replacement Order
+      </Link>
+      <Link href="/demos/shopify-widget" style={{ fontSize: 16, color: '#09090b', textDecoration: 'underline' }}>
+        4. Product Recommendation → Add to Cart
+      </Link>
+
       <h2 style={{ fontSize: 18, fontWeight: 600, marginTop: 16 }}>Integration prototypes</h2>
       <Link href="/dashboard" style={{ fontSize: 16, color: '#09090b', textDecoration: 'underline' }}>
         Dashboard (Stripe widget integration)
