@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { BotMessage, ChatCard, DemoCursor, MessagesStack, UserMessage } from '@/components';
+import { BotMessage, ChatCard, DemoCursor, MessagesStack, ThinkingTrace, UserMessage } from '@/components';
 import { useTimeline } from '@/hooks/useTimeline';
 import { ChatbaseMark } from '../shopify-widget/WidgetIcons';
 import { WidgetHeader, WidgetHistory, WidgetInput, WidgetMetaRow } from '../shopify-widget/WidgetChrome';
@@ -77,6 +77,7 @@ export default function ReplacementOrderDemo() {
                   <div id="replacement-stage-select" className={styles.stage}>
                     <BotMessage
                       id="replacement-bot-select"
+                      trace={<ThinkingTrace id="replacement-trace-select" />}
                       lines={['I can help with the wrong size. Which item needs', 'replacing?']}
                     />
                     <div className={styles.cardSlot}><SelectItemCard selected={selectedItem} onSelect={selectItem} onContinue={() => setManualStage('options')} /></div>
