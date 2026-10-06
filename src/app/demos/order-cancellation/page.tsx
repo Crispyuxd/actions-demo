@@ -40,10 +40,7 @@ export default function OrderCancellationDemo() {
               <BotMessage
                 id="bot-2"
                 trace={<ThinkingTrace id="trace-1" />}
-                lines={[
-                  "I checked order #CB-1042. It hasn't shipped,",
-                  'so I can cancel it. Should I go ahead?',
-                ]}
+                lines={["It hasn't shipped yet. Should I cancel it?"]}
                 meta={<WidgetMetaRow id="meta-1" positioned={false} gap={8} />}
               />
 

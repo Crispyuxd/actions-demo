@@ -58,13 +58,15 @@ export function OptionsCard({ item, size, onSizeChange, onBack, onContinue }: { 
       </div>
       <div className={styles.separator} />
       <div className={styles.fields}>
-        <div className={styles.field}>
+        <label className={styles.field}>
           <span>Color</span>
-          <span className={styles.selectField}>{product.color}<img src={`${assets}/select-chevron.svg`} alt="" /></span>
-        </div>
+          <select key={item} className={styles.dropdown} aria-label="Replacement color" defaultValue={product.color}>
+            <option value={product.color}>{product.color}</option>
+          </select>
+        </label>
         <label className={styles.field}>
           <span>Size</span>
-          <select className={styles.sizeSelect} aria-label="Replacement size" value={size} onChange={event => onSizeChange(event.target.value)}>
+          <select className={styles.dropdown} aria-label="Replacement size" value={size} onChange={event => onSizeChange(event.target.value)}>
             {product.sizes.map(option => <option key={option} value={option}>{option}</option>)}
           </select>
         </label>

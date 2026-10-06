@@ -47,14 +47,11 @@
 }
 .primaryButton { border: 1px solid #09090b; background: #09090b; color: #fff; box-shadow: inset 0 -2px 0 rgba(255,255,255,0.12); }
 .secondaryButton { border: 1px solid #e4e4e7; background: #fff; color: #09090b; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.04); }
-.primaryButton:focus-visible, .secondaryButton:focus-visible, .selectField:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
+.primaryButton:focus-visible, .secondaryButton:focus-visible, .dropdown:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
 @media (hover: hover) { .primaryButton:hover { background: #27272a; } .secondaryButton:hover { background: #fafafa; } }
 .fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
 .field { display: flex; min-height: 40px; align-items: center; justify-content: space-between; gap: 16px; color: #52525b; font-size: 14px; font-weight: 500; letter-spacing: -0.28px; }
-.selectField, .sizeSelect { display: flex; width: 139px; height: 40px; align-items: center; justify-content: space-between; padding: 0 12px; border: 1px solid #e4e4e7; border-radius: 8px; background: #fff; color: #09090b; font: inherit; font-size: 14px; }
-.selectField img { flex: none; }
-.sizeSelect { appearance: none; background: #fff url('/replacement-order/select-chevron.svg') no-repeat right 16px center; cursor: pointer; }
-.sizeSelect:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
+.dropdown { width: 139px; height: 40px; flex: none; appearance: none; padding: 0 32px 0 12px; border: 1px solid #e4e4e7; border-radius: 8px; background: #fff url('/replacement-order/select-chevron.svg') no-repeat right 16px center; color: #09090b; font: inherit; font-size: 14px; cursor: pointer; }
 .backButton { display: flex; width: 24px; height: 24px; flex: none; align-items: center; justify-content: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
 .backButton:focus-visible { outline: 2px solid #09090b; outline-offset: 2px; }
 .swapBlock { display: flex; flex-direction: column; gap: 4px; margin-top: 20px; padding: 12px 16px; border-radius: 8px; background: #fafafa; font-size: 14px; line-height: 20px; letter-spacing: -0.28px; }
@@ -62,6 +59,7 @@
 .swapLabel { color: #71717a; }
 .transferDivider { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
 .transferLine { height: 1px; flex: 1; background: #f4f4f5; }
+.transferDivider img { transform: rotate(180deg); }
 .confirmButtons { display: flex; gap: 12px; margin-top: 20px; }
 .confirmButtons > button { flex: 1; }
 .successIcon { display: flex; width: 20px; height: 20px; flex: none; align-items: center; justify-content: center; }
